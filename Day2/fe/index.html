@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onClick="getData()">Get Data</button>
+    <h3 id="message"></h3>
+
+</body>
+<script>
+    async function getData() {
+        try{
+        let res=await fetch('http://localhost:8080/aboutus')
+        let data=await res.json()
+        console.log(data);
+        document.getElementById("message").textContent=data.message
+        }catch(err){
+                console.log("err in get data");
+                
+        }
+    }
+</script>
+</html>
