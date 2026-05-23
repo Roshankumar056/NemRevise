@@ -1,0 +1,58 @@
+const courses = [
+  {
+    id: 1,
+    title: "React Basic",
+    category: "Frontend",
+    duration: "25hours",
+    level: "Beginner",
+    price: 1200,
+    description: "Learn React Funndamentals",
+  },
+  {
+    id: 2,
+    title: "Node.js Api",
+    category: "Frontend",
+    duration: "25hours",
+    level: "Beginner",
+    price: 1200,
+    description: "Learn React Funndamentals",
+  },
+  {
+    id: 3,
+    title: "Python Basic",
+    category: "Frontend",
+    duration: "25hours",
+    level: "Beginner",
+    price: 1200,
+    description: "Learn React Funndamentals",
+  },
+  {
+    id: 4,
+    title: "Php Basic",
+    category: "Frontend",
+    duration: "25hours",
+    level: "Beginner",
+    price: 1200,
+    description: "Learn React Funndamentals",
+  },
+  {
+    id: 5,
+    title: "DevOps Basic",
+    category: "Frontend",
+    duration: "25hours",
+    level: "Beginner",
+    price: 1200,
+    description: "Learn React Funndamentals",
+  },
+  {
+    id: 6,
+    title: "Ai/ml Basic",
+    category: "Frontend",
+    duration: "25hours",
+    level: "Beginner",
+    price: 1200,
+    description: "Learn React Funndamentals",
+  },
+];
+
+export default courses;
