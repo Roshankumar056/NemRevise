@@ -1,20 +1,28 @@
 import { NavLink } from "react-router-dom";
-import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
-const Navbar = ({savedCount}) => {
+function Navbar({ savedCount }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
+
   return (
-    <nav>
+    <nav className="navbar">
       <div>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/courses">Courses</NavLink>
-        <NavLink to="/saved">Saved({savedCount})</NavLink>
+        <NavLink to="/saved">
+          Saved ({savedCount})
+        </NavLink>
         <NavLink to="/about">About</NavLink>
       </div>
-      <button onClick={toggleTheme}>{theme==="light"?"Switch to Dark Mode":"Switch to Light Mode"}</button>
+
+      <button onClick={toggleTheme}>
+        {theme === "light"
+          ? "Switch to Dark Mode"
+          : "Switch to Light Mode"}
+      </button>
     </nav>
   );
-};
+}
 
 export default Navbar;

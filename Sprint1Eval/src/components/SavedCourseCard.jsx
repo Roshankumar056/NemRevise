@@ -1,13 +1,15 @@
-import React from 'react'
-
-const SavedCourseCard = ({course,removeCourse}) => {
+function SavedCourseCard({ course, removeCourse }) {
   return (
-    <div>
+    <div className="card">
       <h3>{course.title}</h3>
-      <p>Price:{course.price}</p>
-      <button onClick={()=>removeCourse(course.id)}>Remove</button>
+
+      <p>Price: ₹{course.price}</p>
+
+      <button onClick={() => removeCourse(course.id)}>
+        Remove
+      </button>
     </div>
-  )
+  );
 }
 
-export default SavedCourseCard
+export default SavedCourseCard;
