@@ -5,13 +5,20 @@ const TodoRouter = express.Router();
 
 TodoRouter.post("/add-todo", async (req, res) => {
   //   await TodoModel.create(req.body); //This line and next 2 line of code is work same but the 2 line is better instead of these line.
-  let todo = new TodoModel(req.body);
-  await todo.save();
-  res.status(201).json({ message: "Todo Added" });
+  try {
+    let todo = new TodoModel(req.body);
+    await todo.save();
+    res.status(201).json({ message: "Todo Added" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Something went Wrong" });
+  }
 });
 
 TodoRouter.get("/allTodos", async (req, res) => {
-  let todos = await TodoModel.find();
+  const{page,limit}=req.query;
+  let skippingItem=(page-1)*limit;
+  let todos = await TodoModel.find().skip(skippingItem).limit(limit)
   res.status(200).json({ message: "Todos List", todos });
 });
 
