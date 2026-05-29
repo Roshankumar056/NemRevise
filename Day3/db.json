@@ -1,1 +1,75 @@
-{"todos":[{"id":2,"title":"Learn Express/PathParams","description":"This is help in get req and sending res","status":false},{"id":3,"title":" postman","description":"It is bestfreind of backend","status":false},{"title":" AI/ML","description":"It is good for upcoming days","status":false,"id":5},{"title":"Learn python","description":"It is good for upcoming days","status":false,"id":6},{"title":"Learn MonogoDB/SQLDB","description":"It is good for DataBase","status":false,"id":7},{"title":"Learn jeera","description":"It is good for Testing","status":false,"id":8},{"title":"Learn DevOpps","description":"It is good techStack","status":false,"id":9},{"title":"Learn PhP","description":"It is excellent techStack","status":false,"id":10}],"blog":[{"id":1,"title":"Introduction to React","description":"React is a JavaScript library used for building user interfaces and single page applications."},{"id":2,"title":"Understanding JavaScript Closures","description":"Closures allow a function to access variables from its outer scope even after the outer function has finished execution."},{"id":3,"title":"What is Context API?","description":"Context API is used in React to share data globally without passing props manually at every level."}]}
+{
+  "todos": [
+    {
+      "id": 2,
+      "title": "Learn Express/PathParams",
+      "description": "This is help in get req and sending res",
+      "status": false
+    },
+    {
+      "id": 3,
+      "title": " postman",
+      "description": "It is bestfreind of backend",
+      "status": false
+    },
+    {
+      "title": " AI/ML",
+      "description": "It is good for upcoming days",
+      "status": false,
+      "id": 5
+    },
+    {
+      "title": "Learn python",
+      "description": "It is good for upcoming days",
+      "status": false,
+      "id": 6
+    },
+    {
+      "title": "Learn MonogoDB/SQLDB",
+      "description": "It is good for DataBase",
+      "status": false,
+      "id": 7
+    },
+    {
+      "title": "Learn jeera",
+      "description": "It is good for Testing",
+      "status": false,
+      "id": 8
+    },
+    {
+      "title": "Learn DevOpps",
+      "description": "It is good techStack",
+      "status": false,
+      "id": 9
+    },
+    {
+      "title": "Learn PhP",
+      "description": "It is excellent techStack",
+      "status": false,
+      "id": 10
+    },
+    {
+      "title": "Learn Django",
+      "description": "It is excellent techStack",
+      "status": false,
+      "id": 11
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "title": "Introduction to React",
+      "description": "React is a JavaScript library used for building user interfaces and single page applications."
+    },
+    {
+      "id": 2,
+      "title": "Understanding JavaScript Closures",
+      "description": "Closures allow a function to access variables from its outer scope even after the outer function has finished execution."
+    },
+    {
+      "id": 3,
+      "title": "What is Context API?",
+      "description": "Context API is used in React to share data globally without passing props manually at every level."
+    }
+  ]
+}

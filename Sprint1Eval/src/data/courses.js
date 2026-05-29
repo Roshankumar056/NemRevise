@@ -56,3 +56,15 @@ const courses = [
 ];
 
 export default courses;
+
+[
+{ name: "Roshan", age: 25, gender: "male" },
+
+{ name: "Aman", age: 22, gender: "male" },
+
+{ name: "Priya", age: 24, gender: "female" },
+
+{ name: "Sneha", age: 21, gender: "female" },
+
+{ name: "Rahul", age: 27, gender: "male" }
+]

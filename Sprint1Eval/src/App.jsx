@@ -31,9 +31,7 @@ function App() {
   }, []);
 
   const removeCourse = useCallback((id) => {
-    setSavedCourses((prev) =>
-      prev.filter((course) => course.id !== id)
-    );
+    setSavedCourses((prev) => prev.filter((course) => course.id !== id));
   }, []);
 
   return (
@@ -46,20 +44,14 @@ function App() {
         <Route
           path="/courses"
           element={
-            <Courses
-              savedCourses={savedCourses}
-              saveCourse={saveCourse}
-            />
+            <Courses savedCourses={savedCourses} saveCourse={saveCourse} />
           }
         />
 
         <Route
           path="/courses/:courseId"
           element={
-            <CourseDetail
-              savedCourses={savedCourses}
-              saveCourse={saveCourse}
-            />
+            <CourseDetail savedCourses={savedCourses} saveCourse={saveCourse} />
           }
         />
 
