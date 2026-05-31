@@ -1,7 +1,7 @@
 const express=require("express");
 const connectDB = require("./config/db");
 const logger = require("./middleware/loggerMiddleware");
-const rateLimitter = require("./middleware/rateLimitter");
+const rateLimit= require("./middleware/rateLimitter");
 const errorHandler = require("./middleware/errorMiddleware");
 const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
@@ -11,7 +11,7 @@ const app=express()
 connectDB()-0
 app.use(express.json())
 app.use(logger)
-app.use("/api",rateLimitter)
+app.use("/api",rateLimit)
 app.use("/api/auth",authRoutes)
 app.use("/api/posts",postRoutes)
 app.use(errorHandler)
