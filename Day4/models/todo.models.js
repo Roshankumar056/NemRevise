@@ -1,13 +1,21 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose");
 
 let todoSchema = new mongoose.Schema({
-  title: {type:String,required:true,unique:true},
+  title: { type: String, required: true, unique: true },
   description: String,
-  status: {type:Boolean,default:false},
-  progression:{type:String,enum:["Paused","InProgress","AboutToComplete"],default:"InProgress"},
-  noOfLikes: {type:Number,min:0,max:100,default:0}
+  status: { type: Boolean, default: false },
+  progression: {
+    type: String,
+    enum: ["Paused", "InProgress", "AboutToComplete"],
+    default: "InProgress",
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
+  },
 });
 
 let TodoModel = mongoose.model("Todo", todoSchema);
 
-module.exports=TodoModel
+module.exports = TodoModel;

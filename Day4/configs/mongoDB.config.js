@@ -1,8 +1,10 @@
 const  mongoose  = require("mongoose");
 
 const connectToDB=()=>{
+  console.log("VALUE",process.env.MONGO_URI);
+  
     mongoose
-  .connect("mongodb://127.0.0.1:27017/nemRevise")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to DB");
   })

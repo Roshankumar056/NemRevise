@@ -3,7 +3,7 @@ const app = express();
 const TodoRouter = require("./routes/todo.route");
 const connectToDB = require("./configs/mongoDB.config");
 const UserRouter = require("./routes/user.route");
-
+require("dotenv").config()
 app.use(express.json());
 
 

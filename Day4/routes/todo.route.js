@@ -1,5 +1,6 @@
 const express = require("express");
 const TodoModel = require("../models/todo.models");
+const userModel = require("../models/user.model");
 
 const TodoRouter = express.Router();
 
@@ -16,9 +17,9 @@ TodoRouter.post("/add-todo", async (req, res) => {
 });
 
 TodoRouter.get("/allTodos", async (req, res) => {
-  const{page,limit}=req.query;
-  let skippingItem=(page-1)*limit;
-  let todos = await TodoModel.find().skip(skippingItem).limit(limit)
+  const { page, limit } = req.query;
+  let skippingItem = (page - 1) * limit;
+  let todos = await TodoModel.find().skip(skippingItem).limit(limit);
   res.status(200).json({ message: "Todos List", todos });
 });
 
@@ -32,4 +33,12 @@ TodoRouter.patch("/update-todo/:todoId", async (req, res) => {
     updatedTodo: todo,
   });
 });
+
+TodoRouter.get("/:userId", async (req, res) => {
+  const { userId } = req.params;
+  let user=await userModel.findById(userId,{__v:0,_id:0})
+  let todos = await TodoModel.find({ createdBy: userId },{createdBy:0,__v:0});
+  res.status(200).json({ message: "TodoList", details:{user,todos} });
+});
+
 module.exports = TodoRouter;

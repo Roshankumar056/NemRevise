@@ -13,16 +13,6 @@ const addressSchema=new mongoose.Schema({
 const userSchema=new mongoose.Schema({
     name:String,
     email:String,
-    addresses:[addressSchema],
-    orders:[
-        {
-            productName:String,
-            amount:String,
-            delivery_Status:Boolean,
-            mode_of_payment:String,
-            delivery_address:addressSchema
-        }
-    ]
 })
 
 const userModel=mongoose.model("user",userSchema)
