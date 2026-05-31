@@ -1,4 +1,5 @@
 const Post = require("./models/Post");
+const User = require("./models/User");
 
 
 //MongoDb Queries 
@@ -69,7 +70,101 @@ async function top3AuthorsByLikes() {
         {
             $group:{
                 _id:"$author",
+                totalLikes:{
+                    $sum:"$likes",
+                }
+            }
+        },
+        {
+            $sort:{totalLikes:-1}
+        },
+        {$limit:3},
+        {
+            $lookup:{
+                from:"users",
+                localField:"_id",
+                foreignField:"_id",
+                as:"author"
             }
         }
     ])
+}
+
+///AggreGation PipleLine 3
+
+async function monthlyPostActivity() {
+    return Post.aggregate([
+        {
+            $group:{
+                _id:{
+                    year:{
+                        $year:"$createdAt",
+                    },
+                    month:{
+                        $month:"$createdAt"
+                    }
+                },count:{
+                    $sum:1
+                }
+            }
+        },{
+            $sort:{
+                "_id.year":1,
+                "_id.month":1
+            }
+        }
+    ])
+}
+
+
+///AggreGation PipleLine 4
+async function tagPopularity() {
+    return Post.aggregate([
+        {$unwind:"$tags"},
+        {$group:{
+            _id:"$tags",
+            count:{
+                $sum:1
+            }
+        }},{
+            $sort:{
+                count:-1
+            }
+        }
+    ])
+}
+
+///AggreGation PipleLine 5
+
+async function authorWithNoPost(params) {
+    return User.aggregate([
+        {
+            $lookup:{
+                from:"posts",
+                localField:"_id",
+                foreignField:"author",
+                as:"post"
+            }
+        },{
+            $match:{
+                posts:{
+                    $eq:[]
+                }
+            }
+        }
+    ])
+}
+
+
+module.exports={
+    postsMoreThan10Likes,
+    gmailUsers,
+    nodeOrMongoPost,
+    incrementLikes,
+    deleteOldPosts,
+    postCountPerAuthor,
+    top3AuthorsByLikes,
+    monthlyPostActivity,
+    tagPopularity,
+    authorWithNoPost
 }
