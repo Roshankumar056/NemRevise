@@ -17,9 +17,20 @@ TodoRouter.post("/add-todo", async (req, res) => {
 });
 
 TodoRouter.get("/allTodos", async (req, res) => {
-  const { page, limit } = req.query;
+  const { title, status, page, limit, sort, order } = req.query;
+  const queryObj = {};
+  if (title) {
+    queryObj.title = { $regex: title, $options: "i" };
+  }
+  if (status) {
+    queryObj.status = status;
+  }
+  console.log(queryObj);
   let skippingItem = (page - 1) * limit;
-  let todos = await TodoModel.find().skip(skippingItem).limit(limit);
+  let todos = await TodoModel.find(queryObj)
+    .skip(skippingItem)
+    .limit(limit)
+    .sort({ [sort]: order == "asc" ? 1 : -1 });
   res.status(200).json({ message: "Todos List", todos });
 });
 
@@ -34,11 +45,39 @@ TodoRouter.patch("/update-todo/:todoId", async (req, res) => {
   });
 });
 
+TodoRouter.get("/analytics", async (req, res) => {
+  let ans = await TodoModel.aggregate([
+    {
+      $group: {
+        _id: "$status",
+        count: { $sum: 1 },
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    message: "Analytics",
+    data: ans,
+  });
+});
+
 TodoRouter.get("/:userId", async (req, res) => {
   const { userId } = req.params;
-  let user=await userModel.findById(userId,{__v:0,_id:0})
-  let todos = await TodoModel.find({ createdBy: userId },{createdBy:0,__v:0});
-  res.status(200).json({ message: "TodoList", details:{user,todos} });
+
+  let user = await userModel.findById(userId, {
+    __v: 0,
+    _id: 0,
+  });
+
+  let todos = await TodoModel.find(
+    { createdBy: userId },
+    { createdBy: 0, __v: 0 },
+  );
+
+  res.status(200).json({
+    message: "TodoList",
+    details: { user, todos },
+  });
 });
 
 module.exports = TodoRouter;

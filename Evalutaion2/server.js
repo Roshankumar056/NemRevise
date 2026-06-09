@@ -8,7 +8,7 @@ const postRoutes = require("./routes/postRoutes");
 require("dotenv").config()
 
 const app=express()
-connectDB()-0
+connectDB()
 app.use(express.json())
 app.use(logger)
 app.use("/api",rateLimit)
