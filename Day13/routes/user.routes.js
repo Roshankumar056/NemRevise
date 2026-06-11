@@ -4,6 +4,8 @@ const userModel = require("../models/user.models");
 const nodemailer = require("nodemailer");
 const cron = require("node-cron");
 require("dotenv").config();
+const passport=require("passport")
+const GitHubStrategy=require("passport-github2")
 const saltRounds = 10;
 var jwt = require("jsonwebtoken");
 const blackListTokenModel = require("../models/blacklistToken.model");
@@ -166,4 +168,36 @@ UserRouter.post("/setreminder", (req, res) => {
   });
   res.json({ message: "y receive after 2 min" });
 });
+
+
+
+
+
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: "http://localhost:5000/users/auth/github/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    
+      return done(null,profile)
+  }
+));
+
+
+UserRouter.get('/auth/github',
+  passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+UserRouter.get('/auth/github/callback', 
+  passport.authenticate('github', { session:false, failureRedirect: '/login' }),
+  function(req, res) {
+    console.log(req.user);
+    
+    // Successful authentication, redirect home.
+    res.json({message:"Login Sucess",token:"abrakadabra"});
+  });
+
+
+
 module.exports = UserRouter;
